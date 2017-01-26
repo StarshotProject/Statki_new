@@ -32,7 +32,7 @@ public class Player {
 	Ship ship3a = new Ship(3);
 	Ship ship3b = new Ship(3);
 	Ship ship4a = new Ship(4);
-	Ship[] ships = { ship1a, ship1b, ship1c};//, ship1d, ship2a, ship2b, ship2c, ship3a, ship3b, ship4a };
+	Ship[] ships = { ship1a, ship1b, ship1c, ship1d, ship2a, ship2b, ship2c, ship3a, ship3b, ship4a };
 
 	Player() {
 		shipDistribution = new Board();
@@ -50,9 +50,7 @@ public class Player {
 		ship4a = new Ship(4);
 	}
 
-	void outlineShips() {// ³adnie iteruje siê 20 razy
-		// problem - wed³ug niego po³o¿enie masztu to 0,0
-		System.out.println("metoda outline");
+	void outlineShips() {
 		for (Ship ship : this.ships) {
 			for (Mast mast : ship.masts) {
 				if (mast.setOnBoard = true) {

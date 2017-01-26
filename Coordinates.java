@@ -19,6 +19,8 @@ public class Coordinates {
 		letterToNumber.put("h", 7);
 		letterToNumber.put("i", 8);
 		letterToNumber.put("j", 9);
+		horizontalPosition  = 11;
+		verticalPosition  =11;
 	}
 	
 	Coordinates(int horizontal, int vertical){

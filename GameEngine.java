@@ -106,11 +106,11 @@ public class GameEngine {
 
 	public static void setShips(Player ob) {
 		for (Ship ship : ob.ships) {// mam wszystkie jego sttaki
-			System.out.println("Liczba masztów: " + ship.numberOfMasts);
-			switch (ship.numberOfMasts) {
+			System.out.println("Liczba masztów: " + ship.masts.length);
+			switch (ship.masts.length) {
 			case 1: {
 				do {
-					for (int i = 0; i < ship.numberOfMasts; i++) {
+					for (int i = 0; i < ship.masts.length; i++) {
 						// jak oznaczyæ maszt ¿e jest ju¿ ustawiony.
 						Coordinates coordinates = readCoordinates();
 						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
@@ -138,7 +138,43 @@ public class GameEngine {
 			}
 			case 2: {
 				do {
-					for (int i = 0; i < ship.numberOfMasts; i++) {
+					for (int i = 0; i < ship.masts.length; i++) {
+						Coordinates coordinates = readCoordinates();
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+							if(i>0){
+								System.out.println("Wszed³em w pêtle");
+								ship.shapeControl();
+								if(ship.shapeControl()){
+									i--;
+									System.out.println("Niedozwolona pozycja masztu");
+									continue;
+								}
+							}
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
+			}
+			case 3: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
 						Coordinates coordinates = readCoordinates();
 						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
 								.getHorizontalPosition()] == 0) {
@@ -163,34 +199,36 @@ public class GameEngine {
 				ob.shipDistribution.displayBoard();
 				break;
 			}
-			case 3: {
-			}
 			case 4: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
+						Coordinates coordinates = readCoordinates();
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
 			}
 
 			}
 		}
-
-		// for (int i = 0; i < 20; i++) {
-		// Coordinates coordinates = readCoordinates();
-		// if
-		// (ob.shipDistribution.board[coordinates.getHorizontalPosition()][coordinates
-		// .getVerticalPosition()] == 0) {
-		// ob.shipDistribution.board[coordinates.getHorizontalPosition()][coordinates.getVerticalPosition()]
-		// = 1;
-		// ob.shipDistribution.displayBoard();
-		// } else {
-		// System.out.println("Tam ju¿ jest statek!:)");
-		// System.out.println("Spróbuj jeszcze raz");
-		// i--;
-		// }
-		// }
-
-		// for (Ship x : ob.ships) {
-		// for (Mast m : x.masts) {
-		// m.setOnBoardFlag = true;
-		// }
-		// }
 		ob.shipDistribution.displayBoard();
 	}
 
