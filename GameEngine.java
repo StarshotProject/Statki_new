@@ -1,5 +1,4 @@
-//dorobiæ zabezpieczenie przed strza³em dwa razy w to samo miejsce
-//dorobiæ kontrolê kszta³tu statków
+//okreœlanie wspó³rzêdnych na board = najpierw pionowa, potem pozioma.
 
 package Game;
 
@@ -63,7 +62,8 @@ public class GameEngine {
 
 	}
 
-	public static Coordinates readCoordinates() { //ok, pozioma to litera, a pionowa to liczba
+	public static Coordinates readCoordinates() { // ok, pozioma to litera, a
+													// pionowa to liczba
 		boolean properInputFlag = false;
 		Coordinates c = new Coordinates();
 
@@ -142,17 +142,59 @@ public class GameEngine {
 						Coordinates coordinates = readCoordinates();
 						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
 								.getHorizontalPosition()] == 0) {
-							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
-									.getHorizontalPosition()] = 1;
-							if(i>0){
-								System.out.println("Wszed³em w pêtle");
-								ship.shapeControl();
-								if(ship.shapeControl()){
+							if (i > 0) {
+								boolean properMastPosition = false;
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
 									i--;
-									System.out.println("Niedozwolona pozycja masztu");
 									continue;
 								}
 							}
+
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+
 							ship.masts[i].position = coordinates;
 							ship.masts[i].set();
 						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
@@ -178,8 +220,59 @@ public class GameEngine {
 						Coordinates coordinates = readCoordinates();
 						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
 								.getHorizontalPosition()] == 0) {
+							if (i > 0) {
+								boolean properMastPosition = false;
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
+									i--;
+									continue;
+								}
+							}
+
 							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
 									.getHorizontalPosition()] = 1;
+
 							ship.masts[i].position = coordinates;
 							ship.masts[i].set();
 						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
@@ -198,11 +291,119 @@ public class GameEngine {
 				System.out.println("statek ustawiony!");
 				ob.shipDistribution.displayBoard();
 				break;
+
 			}
 			case 4: {
 				do {
 					for (int i = 0; i < ship.masts.length; i++) {
 						Coordinates coordinates = readCoordinates();
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							if (i > 0) {
+								boolean properMastPosition = false;
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
+									i--;
+									continue;
+								}
+							}
+
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
+
+			}
+
+			}
+		}
+		ob.shipDistribution.displayBoard();
+
+	}
+
+	public static void setShipsAutomatically(Player ob) {
+//		for (int i = 0; i < 20; i++) {
+//			int[] coordinates = new int[2];
+//			coordinates[0] = (int) (10 * Math.random());
+//			coordinates[1] = (int) (10 * Math.random());
+//			if (ob.shipDistribution.board[coordinates[0]][coordinates[1]] == 0) {
+//				ob.shipDistribution.board[coordinates[0]][coordinates[1]] = 1;
+//			} else {
+//				System.out.println("UPs, Tam ju¿ jest statek!:)");
+//				System.out.println("Spróbujê jeszcze raz :)");
+//				i--;
+//			}
+//		}
+//		ob.shipDistribution.displayBoard();
+
+		for (Ship ship : ob.ships) {// mam wszystkie jego sttaki
+			switch (ship.masts.length) {
+			case 1: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
+						
+						
+						Coordinates coordinates= new Coordinates((int) (10 * Math.random()), (int) (10 * Math.random()));
+						
+						
 						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
 								.getHorizontalPosition()] == 0) {
 							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
@@ -226,23 +427,243 @@ public class GameEngine {
 				ob.shipDistribution.displayBoard();
 				break;
 			}
+			case 2: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
+						Coordinates coordinates = new Coordinates((int) (10 * Math.random()), (int) (10 * Math.random()));
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							if (i > 0) {
+								boolean properMastPosition = false;
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
+									i--;
+									continue;
+								}
+							}
+
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
+			}
+			case 3: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
+						Coordinates coordinates = new Coordinates((int) (10 * Math.random()), (int) (10 * Math.random()));
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							if (i > 0) {
+								boolean properMastPosition = false;
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
+									i--;
+									continue;
+								}
+							}
+
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
 
 			}
-		}
-		ob.shipDistribution.displayBoard();
-	}
+			case 4: {
+				do {
+					for (int i = 0; i < ship.masts.length; i++) {
+						Coordinates coordinates = new Coordinates((int) (10 * Math.random()), (int) (10 * Math.random()));
+						if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 0) {
+							if (i > 0) {
+								boolean properMastPosition = false;
 
-	public static void setShipsAutomatically(Player ob) {
-		for (int i = 0; i < 20; i++) {
-			int[] coordinates = new int[2];
-			coordinates[0] = (int) (10 * Math.random());
-			coordinates[1] = (int) (10 * Math.random());
-			if (ob.shipDistribution.board[coordinates[0]][coordinates[1]] == 0) {
-				ob.shipDistribution.board[coordinates[0]][coordinates[1]] = 1;
-			} else {
-				System.out.println("UPs, Tam ju¿ jest statek!:)");
-				System.out.println("Spróbujê jeszcze raz :)");
-				i--;
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() - 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() - 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition() + 1][coordinates
+											.getHorizontalPosition()] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								try {
+									if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+											.getHorizontalPosition() + 1] == 1) {
+										System.out.println("Maszt znajduje siê obok innego masztu");
+										properMastPosition = true;
+									}
+								} catch (ArrayIndexOutOfBoundsException a) {
+									System.out.println("wysz³em poza plansze");
+								}
+
+								if (!properMastPosition) {
+									System.out.println("Niedozwolona pozycja!");
+									i--;
+									continue;
+								}
+							}
+
+							ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+									.getHorizontalPosition()] = 1;
+
+							ship.masts[i].position = coordinates;
+							ship.masts[i].set();
+						} else if (ob.shipDistribution.board[coordinates.getVerticalPosition()][coordinates
+								.getHorizontalPosition()] == 3) {
+							System.out.println("Za blisko innego statku!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						} else {
+							System.out.println("Tam ju¿ jest statek!:)");
+							System.out.println("Spróbuj jeszcze raz");
+							i--;
+						}
+					}
+				} while (!ship.isSet());
+				ob.outlineShips();
+				System.out.println("statek ustawiony!");
+				ob.shipDistribution.displayBoard();
+				break;
+
+			}
+
 			}
 		}
 		ob.shipDistribution.displayBoard();

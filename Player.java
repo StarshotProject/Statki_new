@@ -54,15 +54,11 @@ public class Player {
 		for (Ship ship : this.ships) {
 			for (Mast mast : ship.masts) {
 				if (mast.setOnBoard = true) {
-					System.out.println("Nowy przebieg");
-					System.out.println(mast.toString());
-					System.out.println(mast.setOnBoard);
 					try {
 						if (this.shipDistribution.board[mast.position.getVerticalPosition() - 1][mast.position
 								.getHorizontalPosition() - 1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition() - 1][mast.position
 									.getHorizontalPosition() - 1] = 3;
-							System.out.println("1");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -71,7 +67,6 @@ public class Player {
 								.getHorizontalPosition()] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition()-1][mast.position
 									.getHorizontalPosition()] = 3;
-							System.out.println("2");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -80,10 +75,6 @@ public class Player {
 								.getHorizontalPosition() + 1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition() - 1][mast.position
 									.getHorizontalPosition() + 1] = 3;
-							System.out.println("3");
-							System.out.println(
-									mast.position.getVerticalPosition() + "x" + mast.position.getHorizontalPosition());
-
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -92,7 +83,6 @@ public class Player {
 								.getHorizontalPosition()+1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition() ][mast.position
 									.getHorizontalPosition()+1] = 3;
-							System.out.println("4");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -101,7 +91,6 @@ public class Player {
 								.getHorizontalPosition() + 1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition() + 1][mast.position
 									.getHorizontalPosition() + 1] = 3;
-							System.out.println("5");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -110,7 +99,6 @@ public class Player {
 								.getHorizontalPosition() ] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition()+1][mast.position
 									.getHorizontalPosition()] = 3;
-							System.out.println("6");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -119,7 +107,6 @@ public class Player {
 								.getHorizontalPosition() - 1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition() + 1][mast.position
 									.getHorizontalPosition() - 1] = 3;
-							System.out.println("7");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
@@ -128,7 +115,6 @@ public class Player {
 								.getHorizontalPosition()-1] == 0) {
 							this.shipDistribution.board[mast.position.getVerticalPosition()][mast.position
 									.getHorizontalPosition()-1] = 3;
-							System.out.println("8");
 						}
 					} catch (ArrayIndexOutOfBoundsException aiobe) {
 					}
